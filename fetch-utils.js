@@ -40,12 +40,7 @@ export async function getPets() {
 export async function getPet(id) {
     return await client
         .from('pets')
-        .select(
-            `
-            *,
-            comments (*)
-        `
-        )
+        .select('*, comments(*)')
         .eq('id', id)
         .order('created_at', { foreignTable: 'comments', ascending: false })
         .single();
